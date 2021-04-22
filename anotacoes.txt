@@ -1,0 +1,48 @@
+
+mkdir node_nlw5
+
+cd node_nlw5
+
+yarn init -y
+
+yarn add express
+
+mkdir src
+cd src
+
+yarn add @types/express -D
+
+yarn add typescript -D
+yarn tsc --init
+
+yarn add ts-node-dev -D
+
+# RODAR A APLICAÇÃO
+yarn dev
+
+mkdir src/database
+
+yarn add typeorm reflect-metadata sqlite3
+
+mkdir src/database/migrations
+
+yarn typeorm migration:create -n CreateSettings
+
+se cria a tabela dentro do arquivo que o comando acima cria.. não é criado com base na classe, como no dotnet
+
+yarn typeorm migration:run
+
+https://www.beekeeperstudio.io/
+
+
+//yarn typeorm migration:run //executa o Up()
+//yarn typeorm migration:revert //executa o Down()
+
+
+yarn add uuid
+yarn add @types/uuid -D
+
+
+mkdir src/repositories
+
+mkdir src/controllers
