@@ -56,3 +56,8 @@ yarn typeorm migration:run
 yarn typeorm migration:create -n CreateConnections
 yarn typeorm migration:run
 
+
+yarn add socket.io
+yarn add @types/socket.io -D
+yarn add ejs
+

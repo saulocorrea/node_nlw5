@@ -9,24 +9,32 @@ interface IConnectionCreate {
 }
 
 class ConnectionsService {
-    private connectionsRepository: ConnectionsRepository;
+    //private connectionsRepository: ConnectionsRepository;
 
-    constructor() {
-        this.connectionsRepository = getCustomRepository(ConnectionsRepository);
-    }
+    // constructor() {
+    //     this.connectionsRepository = getCustomRepository(ConnectionsRepository);
+    // }
 
     async create({ socket_id, user_id, admin_id, id }: IConnectionCreate) {
+        const connectionsRepository = getCustomRepository(ConnectionsRepository);
 
-        const connection = this.connectionsRepository.create({
+        const connection = connectionsRepository.create({
             socket_id,
             user_id,
             admin_id,
             id
         });
 
-        await this.connectionsRepository.save(connection);
+        await connectionsRepository.save(connection);
 
         return connection;
+    }
+
+    async findByUserId(user_id: string) {
+        const connectionsRepository = getCustomRepository(ConnectionsRepository);
+        return await connectionsRepository.findOne({
+            user_id
+        });
     }
 }
 

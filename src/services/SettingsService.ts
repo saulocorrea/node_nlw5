@@ -33,6 +33,12 @@ class SettingsService {
         return settings;
     }
 
+    async findByUserName(username: string) {
+        return await this.settingsRepository.findOne({
+            username
+        });
+    }
+
 }
 
 export { SettingsService };
