@@ -23,6 +23,25 @@ class MessagesController {
                 });
         }
     }
+
+    // localhost:3333/messages/id
+    async showByUser(request: Request, response: Response) {
+        const { id } = request.params;
+        const messagesService = new MessagesService();
+
+        try {
+            
+            const list = await messagesService.listByUser(id);
+            return response.json(list);
+
+        } catch (err) {
+            return response
+                .status(400)
+                .json({
+                    message: err.message
+                });
+        }
+    }
 }
 
 export { MessagesController };

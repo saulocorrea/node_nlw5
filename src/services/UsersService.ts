@@ -2,11 +2,15 @@ import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
 
 class UsersService {
+    private usersRepository;
+
+    constructor() {
+        this.usersRepository = getCustomRepository(UsersRepository);
+    }
 
     async create(email: string) {
-        const usersRepository = getCustomRepository(UsersRepository);
-
-        const userExists = await usersRepository.findOne({ 
+        
+        const userExists = await this.usersRepository.findOne({ 
             email
         });
         
@@ -14,11 +18,11 @@ class UsersService {
             return userExists;
         }
 
-        const user = usersRepository.create({
+        const user = this.usersRepository.create({
             email
         });
 
-        await usersRepository.save(user);
+        await this.usersRepository.save(user);
 
         return user;
     }

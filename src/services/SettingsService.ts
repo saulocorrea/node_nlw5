@@ -7,11 +7,15 @@ interface ISettingsCreate {
 }
 
 class SettingsService {
+    private settingsRepository;
+
+    constructor() {
+        this.settingsRepository = getCustomRepository(SettingsRepository);
+    }
 
     async create({ chat, username }: ISettingsCreate) {
-        const settingsRepository = getCustomRepository(SettingsRepository);
-
-        const userAlreadyExists = await settingsRepository.findOne({ 
+        
+        const userAlreadyExists = await this.settingsRepository.findOne({ 
             username
         });
         
@@ -19,12 +23,12 @@ class SettingsService {
             throw new Error("Usuário já existe no banco de dados!");
         }
 
-        const settings = settingsRepository.create({
+        const settings = this.settingsRepository.create({
             chat,
             username
         });
 
-        await settingsRepository.save(settings);
+        await this.settingsRepository.save(settings);
 
         return settings;
     }
