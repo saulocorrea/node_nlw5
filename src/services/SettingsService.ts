@@ -7,7 +7,7 @@ interface ISettingsCreate {
 }
 
 class SettingsService {
-    private settingsRepository;
+    private settingsRepository: SettingsRepository;
 
     constructor() {
         this.settingsRepository = getCustomRepository(SettingsRepository);

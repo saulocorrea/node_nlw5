@@ -2,7 +2,7 @@ import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
 
 class UsersService {
-    private usersRepository;
+    private usersRepository: UsersRepository;
 
     constructor() {
         this.usersRepository = getCustomRepository(UsersRepository);
