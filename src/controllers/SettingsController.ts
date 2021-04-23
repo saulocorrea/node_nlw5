@@ -40,6 +40,17 @@ class SettingsController {
         }
 
     }
+
+    async update(request: Request, response: Response) {
+        const settingsService = new SettingsService();
+        
+        const { username } = request.params;
+        const { chat } = request.body;
+
+        await settingsService.update(username, chat);
+
+        return response.json();
+    }
 }
 
 export { SettingsController };
