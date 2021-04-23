@@ -46,3 +46,6 @@ yarn add @types/uuid -D
 mkdir src/repositories
 
 mkdir src/controllers
+
+yarn typeorm migration:create -n CreateUsers
+yarn typeorm migration:run

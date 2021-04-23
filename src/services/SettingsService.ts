@@ -14,7 +14,7 @@ class SettingsService {
         const userAlreadyExists = await settingsRepository.findOne({ 
             username
         });
-
+        
         if (userAlreadyExists) {
             throw new Error("Usuário já existe no banco de dados!");
         }
@@ -24,9 +24,9 @@ class SettingsService {
             username
         });
 
-        const sett = await settingsRepository.save(settings);
+        await settingsRepository.save(settings);
 
-        return sett;
+        return settings;
     }
 
 }
