@@ -49,3 +49,7 @@ mkdir src/controllers
 
 yarn typeorm migration:create -n CreateUsers
 yarn typeorm migration:run
+
+yarn typeorm migration:create -n CreateMessages
+yarn typeorm migration:run
+
