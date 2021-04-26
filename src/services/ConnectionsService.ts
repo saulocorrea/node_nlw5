@@ -9,11 +9,6 @@ interface IConnectionCreate {
 }
 
 class ConnectionsService {
-    //private connectionsRepository: ConnectionsRepository;
-
-    // constructor() {
-    //     this.connectionsRepository = getCustomRepository(ConnectionsRepository);
-    // }
 
     async create({ socket_id, user_id, admin_id, id }: IConnectionCreate) {
         const connectionsRepository = getCustomRepository(ConnectionsRepository);
@@ -34,6 +29,21 @@ class ConnectionsService {
         const connectionsRepository = getCustomRepository(ConnectionsRepository);
         return await connectionsRepository.findOne({
             user_id
+        });
+    }
+
+    async findAllWithoutAdmin() {
+        const connectionsRepository = getCustomRepository(ConnectionsRepository);
+        return await connectionsRepository.find({
+            where: { admin_id: null },
+            relations: ["user"]
+        });
+    }
+
+    async findBySocketId(socket_id: string) {
+        const connectionsRepository = getCustomRepository(ConnectionsRepository);
+        return await connectionsRepository.findOne({
+            socket_id
         });
     }
 }
